@@ -149,8 +149,51 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//$(document).ready(function () {
-//$(".select__item").addClass("jqclass");
+//accordeon
 
-//$(".select__item").css("border", "1px solid red");
-//});
+const accordeon = document.querySelector(".facts__items"),
+  tab = document.querySelectorAll(".facts__item"),
+  answer = document.querySelectorAll(".facts__answer"),
+  plus = document.querySelectorAll(".facts__plus"),
+  minus = document.querySelectorAll(".facts__minus"),
+  open = document.querySelectorAll(".facts__open--style");
+
+accordeon.addEventListener("click", (e) => {
+  const target = e.target.closest(".facts__item");
+
+  if (target) {
+    tab.forEach((item, i) => {
+      if (
+        item === target &&
+        !target.classList.contains("facts__item--active")
+      ) {
+        answer[i].classList.add("active__answer");
+        tab[i].classList.add("facts__item--active");
+        plus[i].style.display = "none";
+        minus[i].style.display = "flex";
+        open[i].style.background = "#0074D4";
+      } else {
+        answer[i].classList.remove("active__answer");
+        tab[i].classList.remove("facts__item--active");
+        plus[i].style.display = "flex";
+        minus[i].style.display = "none";
+        open[i].style.background = "#37A5FF";
+      }
+    });
+  }
+});
+
+// $(".facts__item").click(function (e) {
+//   $(".facts__answer").removeClass("active__answer");
+//   $(".facts__item").removeClass("facts__item--active");
+//   $(".facts__plus").css("display", "flex");
+//   $(".facts__minus").css("display", "none");
+
+//   let target = $(e.target.closest(".facts__item"));
+//   if (target) {
+//     $(this).find(".facts__answer").addClass("active__answer");
+//     $(this).addClass("facts__item--active");
+//     $(this).find(".facts__plus").css("display", "none");
+//     $(this).find(".facts__minus").css("display", "flex");
+//   }
+// });
